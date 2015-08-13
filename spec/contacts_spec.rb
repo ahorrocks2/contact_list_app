@@ -62,7 +62,39 @@ describe(Contacts) do
       expect(Contacts.find(1)).to(eq(test_contact))
     end
   end
+
+  describe('#add_phone') do
+    it('adds a phone number to the contact information') do
+      test_phone = PhoneNumbers.new({:area_code => 503, :main_number => 999-9999, :type => 'work'})
+      test_contact = Contacts.new({:first_name => 'Joe', :last_name => 'Smith', :job => 'Plumber', :company => 'Smith & Sons'})
+      test_contact.add_phone(test_phone)
+      expect(test_contact.show_me_the_phones()).to(eq([test_phone]))
+    end
+  end
+
+  describe('#add_email') do
+    it('adds an email to the contact info') do
+      test_email = Emails.new({:email => 'joe.smith@fake.com', :type => 'work'})
+      test_contact = Contacts.new({:first_name => 'Joe', :last_name => 'Smith', :job => 'Plumber', :company => 'Smith & Sons'})
+      test_contact.add_email(test_email)
+      expect(test_contact.show_me_the_emails()).to(eq([test_email]))
+    end
+  end
+
+  describe('#add_mailing_address') do
+    it('adds a mailing address to the contact info') do
+      test_address = MailingAddresses.new({:street_address => '42 Wallaby Way', :city => 'Sydney', :state => 'AU', :zip => 55555, :type => 'home'})
+      test_contact = Contacts.new({:first_name => 'Joe', :last_name => 'Smith', :job => 'Plumber', :company => 'Smith & Sons'})
+      test_contact.add_mailing_address(test_address)
+      expect(test_contact.show_me_the_addresses()).to(eq([test_address]))
+    end
+  end
 end
+
+
+
+
+
 
 describe(PhoneNumbers) do
   describe('#area_code') do
@@ -84,6 +116,9 @@ describe(PhoneNumbers) do
     end
   end
 end
+
+
+
 
 describe(MailingAddresses) do
   describe('#street_address') do
@@ -117,6 +152,10 @@ describe(MailingAddresses) do
     end
   end
 end
+
+
+
+
 
 describe(Emails) do
   describe('#email') do

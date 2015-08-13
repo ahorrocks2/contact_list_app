@@ -9,6 +9,9 @@ class Contacts
     @job = attributes.fetch(:job)
     @company = attributes.fetch(:company)
     @id = @@all_contacts.length + 1
+    @phone_list = []
+    @email_list = []
+    @address_list = []
   end
 
   define_method(:save) do
@@ -35,5 +38,29 @@ class Contacts
       end
     end
     found_contact
+  end
+
+  define_method(:add_phone) do |new_phone|
+    @phone_list.push(new_phone)
+  end
+
+  define_method(:show_me_the_phones) do
+    @phone_list
+  end
+
+  define_method(:add_email) do |new_email|
+    @email_list.push(new_email)
+  end
+
+  define_method(:show_me_the_emails) do
+    @email_list
+  end
+
+  define_method(:add_mailing_address) do |new_address|
+    @address_list.push(new_address)
+  end
+
+  define_method(:show_me_the_addresses) do
+    @address_list
   end
 end

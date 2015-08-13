@@ -48,6 +48,10 @@ class Contacts
     @phone_list
   end
 
+  define_method(:clear_phones) do
+    @phone_list = []
+  end
+
   define_method(:add_email) do |new_email|
     @email_list.push(new_email)
   end
@@ -56,11 +60,19 @@ class Contacts
     @email_list
   end
 
+  define_method(:clear_emails) do
+    @email_list = []
+  end
+
   define_method(:add_mailing_address) do |new_address|
     @address_list.push(new_address)
   end
 
   define_method(:show_me_the_addresses) do
     @address_list
+  end
+
+  define_method(:clear_mailing_addresses) do
+    @address_list = []
   end
 end

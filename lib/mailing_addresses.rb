@@ -11,6 +11,6 @@ class MailingAddresses
 
   define_method(:one_line) do
     final_address = ""
-    final_address += @type ": " + @street_address + ", " + @city + ", " + @state + " " + @zip.to_s() + " "
+    final_address += @type + ": " + @street_address + ", " + @city + ", " + @state + " " + @zip.to_s() + " "
   end
 end

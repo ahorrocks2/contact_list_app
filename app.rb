@@ -4,6 +4,7 @@ require('./lib/contacts')
 require('./lib/emails')
 require('./lib/mailing_addresses')
 require('./lib/phone_numbers')
+require('pry')
 also_reload('lib/**/*.rb')
 
 get('/') do
@@ -27,13 +28,56 @@ get('/contact/:id') do
 end
 
 post('/new_address') do
-  @contact = Contacts.find(params.fetch('id').to_i())
   street_address = params.fetch('street_address')
   city = params.fetch('city')
   state = params.fetch('state')
   zip = params.fetch('zip')
   type = params.fetch('type')
-  new_address = MailingAddresses.new({:street_address => street_address, :city => city, :state => state :zip => zip, :type => type})
-  @contact.add_address(new_address)
-  redirect('/contact/:id')
+  id = params.fetch('contact_id')
+  new_address = MailingAddresses.new({:street_address => street_address, :city => city, :state => state, :zip => zip, :type => type})
+  @contact = Contacts.find(id.to_i())
+  @contact.add_mailing_address(new_address)
+  redirect('/contact/' + @contact.id().to_s())
+end
+
+post('/clear_addresses') do
+  id = params.fetch('contact_id')
+  @contact = Contacts.find(id.to_i())
+  @contact.clear_mailing_addresses()
+  redirect('/contact/' + @contact.id().to_s())
+end
+
+post('/new_phone') do
+  area_code = params.fetch('area_code')
+  main_number = params.fetch('main_number')
+  type = params.fetch('type')
+  id = params.fetch('contact_id')
+  new_phone = PhoneNumbers.new({:area_code => area_code, :main_number => main_number, :type => type})
+  @contact = Contacts.find(id.to_i())
+  @contact.add_phone(new_phone)
+  redirect('/contact/' + @contact.id().to_s())
+end
+
+post('/clear_phones') do
+  id = params.fetch('contact_id')
+  @contact = Contacts.find(id.to_i())
+  @contact.clear_phones()
+  redirect('/contact/' + @contact.id().to_s())
+end
+
+post('/new_email') do
+  email = params.fetch('email')
+  type = params.fetch('type')
+  id = params.fetch('contact_id')
+  new_email = Emails.new({:email => email, :type => type})
+  @contact = Contacts.find(id.to_i())
+  @contact.add_email(new_email)
+  redirect('/contact/' + @contact.id().to_s())
+end
+
+post('/clear_emails') do
+  id = params.fetch('contact_id')
+  @contact = Contacts.find(id.to_i())
+  @contact.clear_emails()
+  redirect('/contact/' + @contact.id().to_s())
 end

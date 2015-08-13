@@ -6,4 +6,9 @@ class PhoneNumbers
     @main_number = attributes.fetch(:main_number)
     @type = attributes.fetch(:type)
   end
+
+  define_method(:one_line) do
+    one_line = ""
+    one_line += @type + ": (" + @area_code + ") " + @main_number 
+  end
 end

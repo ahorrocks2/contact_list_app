@@ -8,21 +8,85 @@
 
 <% end %>
 
+<% @contact.show_me_the_phones().each() do |phone| %>
+
+<li><%= phone.one_line() %></li>
+
+<% end %>
+
+<% @contact.show_me_the_emails().each() do |email| %>
+
+<li><%= email.one_line() %></li>
+
+<% end %>
+
 <form action="/new_address" method="post">
-  <label for="street_address">Street Address</label><br>
-  <input type="text" name="street_address" id="street_address">
+  <input id='contact_id' name='contact_id' type='hidden' value='<%= @contact.id() %>'>
 
-  <label for="city">City</label><br>
-  <input type="text" name="city" id="city">
+  <label for="street_address">Street Address</label>
+  <input type="text" name="street_address" id="street_address"><br>
 
-  <label for="state">State</label><br>
-  <input type="text" name="state" id="state">
+  <label for="city">City</label>
+  <input type="text" name="city" id="city"><br>
 
-  <label for="zip">Zip</label><br>
-  <input type="text" name="zip" id="zip">
+  <label for="state">State</label>
+  <input type="text" name="state" id="state"><br>
 
-  <label for="type">Type:</label><br>
+  <label for="zip">Zip</label>
+  <input type="text" name="zip" id="zip"><br>
+
+  <label for="type">Type:</label>
   <input type="text" name="type" id="type"><br>
 
-  <button type="submit">Add Address</button>
+  <button type="submit">Add Address</button><br>
 </form>
+
+<form action="/clear_addresses" method="post">
+  <input id='contact_id' name='contact_id' type='hidden' value='<%= @contact.id() %>'>
+
+  <label for ="delete">Would you like to clear previous addresses?</label>
+  <button type="submit" name="delete" id="delete">Delete</button>
+</form>
+
+<form action="/new_phone" method="post">
+  <input id='contact_id' name='contact_id' type='hidden' value='<%= @contact.id() %>'>
+
+  <label for="area_code">Area Code</label>
+  <input type="text" name="area_code" id="area_code"><br>
+
+  <label for="main_number">Phone Number</label>
+  <input type="text" name="main_number" id="main_number"><br>
+
+  <label for="type">Type:</label>
+  <input type="text" name="type" id="type"><br>
+
+  <button type="submit">Add Phone Number</button><br>
+</form>
+
+<form action="/clear_phones" method="post">
+  <input id='contact_id' name='contact_id' type='hidden' value='<%= @contact.id() %>'>
+
+  <label for ="delete">Would you like to clear previous phone numbers?</label>
+  <button type="submit" name="delete" id="delete">Delete</button>
+</form>
+
+<form action="/new_email" method="post">
+  <input id='contact_id' name='contact_id' type='hidden' value='<%= @contact.id() %>'>
+
+  <label for="email">E-Mail</label>
+  <input type="text" name="email" id="email"><br>
+
+  <label for="type">Type:</label>
+  <input type="text" name="type" id="type"><br>
+
+  <button type="submit">Add E-Mail</button><br>
+</form>
+
+<form action="/clear_emails" method="post">
+  <input id='contact_id' name='contact_id' type='hidden' value='<%= @contact.id() %>'>
+
+  <label for ="delete">Would you like to clear previous e-mails?</label>
+  <button type="submit" name="delete" id="delete">Delete</button>
+</form>
+
+<a href="/">Back to Contact List</a>

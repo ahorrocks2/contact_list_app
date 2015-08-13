@@ -32,7 +32,7 @@ post('/new_address') do
   city = params.fetch('city')
   state = params.fetch('state')
   zip = params.fetch('zip')
-  type = params.fetch('type')
+  type = params.fetch('type_a')
   id = params.fetch('contact_id')
   new_address = MailingAddresses.new({:street_address => street_address, :city => city, :state => state, :zip => zip, :type => type})
   @contact = Contacts.find(id.to_i())

@@ -38,8 +38,8 @@ describe('the add contact path', {:type => :feature}) do
     fill_in('city', :with => 'Washington')
     fill_in('state', :with => 'DC')
     fill_in('zip', :with => '00000')
-    fill_in('type', :with => 'Both!')
+    fill_in('type_a', :with => 'working')
     click_button('Add Address')
-    expect(page).to have_content('Washington')
+    expect(page).to have_content('working')
   end
 end

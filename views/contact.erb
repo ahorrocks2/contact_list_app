@@ -20,6 +20,7 @@
 
 <% end %>
 
+
 <form action="/new_address" method="post">
   <input id='contact_id' name='contact_id' type='hidden' value='<%= @contact.id() %>'>
 
@@ -35,20 +36,13 @@
   <label for="zip">Zip</label>
   <input type="text" name="zip" id="zip"><br>
 
-  <label for="type">Type:</label>
-  <input type="text" name="type" id="type"><br>
+  <label for="type_a">Type:</label>
+  <input type="text" name="type_a" id="type_a"><br>
 
-  <button type="submit">Add Address</button><br>
+  <button type="submit" class="btn btn-primary">Add Address</button><br>
 </form>
 
-<form action="/clear_addresses" method="post">
-  <input id='contact_id' name='contact_id' type='hidden' value='<%= @contact.id() %>'>
-
-  <label for ="delete">Would you like to clear previous addresses?</label>
-  <button type="submit" name="delete" id="delete">Delete</button>
-</form>
-
-<form action="/new_phone" method="post">
+<form action="/new_phone" method="post" >
   <input id='contact_id' name='contact_id' type='hidden' value='<%= @contact.id() %>'>
 
   <label for="area_code">Area Code</label>
@@ -60,14 +54,7 @@
   <label for="type">Type:</label>
   <input type="text" name="type" id="type"><br>
 
-  <button type="submit">Add Phone Number</button><br>
-</form>
-
-<form action="/clear_phones" method="post">
-  <input id='contact_id' name='contact_id' type='hidden' value='<%= @contact.id() %>'>
-
-  <label for ="delete">Would you like to clear previous phone numbers?</label>
-  <button type="submit" name="delete" id="delete">Delete</button>
+  <button type="submit" class="btn btn-primary">Add Phone Number</button><br>
 </form>
 
 <form action="/new_email" method="post">
@@ -79,14 +66,28 @@
   <label for="type">Type:</label>
   <input type="text" name="type" id="type"><br>
 
-  <button type="submit">Add E-Mail</button><br>
+  <button type="submit" class="btn btn-primary">Add E-Mail</button><br>
+</form>
+
+<form action="/clear_addresses" method="post">
+  <input id='contact_id' name='contact_id' type='hidden' value='<%= @contact.id() %>'>
+
+  <label for ="delete">Would you like to clear previous addresses?</label>
+  <button type="submit" class="btn btn-danger" name="delete" id="delete">Delete</button>
+</form>
+
+<form action="/clear_phones" method="post">
+  <input id='contact_id' name='contact_id' type='hidden' value='<%= @contact.id() %>'>
+
+  <label for ="delete">Would you like to clear previous phone numbers?</label>
+  <button type="submit" class="btn btn-danger" name="delete" id="delete">Delete</button>
 </form>
 
 <form action="/clear_emails" method="post">
   <input id='contact_id' name='contact_id' type='hidden' value='<%= @contact.id() %>'>
 
   <label for ="delete">Would you like to clear previous e-mails?</label>
-  <button type="submit" name="delete" id="delete">Delete</button>
+  <button type="submit" class="btn btn-danger" name="delete" id="delete">Delete</button>
 </form>
 
 <a href="/">Back to Contact List</a>

@@ -8,7 +8,7 @@ describe(Contacts) do
   before() do
     Contacts.clear()
   end
-  
+
   describe('#first_name') do
     it('returns the first name of the contact') do
       test_contact = Contacts.new({:first_name => 'Joe', :last_name => 'Smith', :job => 'Plumber', :company => 'Smith & Sons'})
@@ -55,11 +55,13 @@ describe(Contacts) do
       expect(test_contact.id()).to(eq(1))
     end
   end
-  # describe('.find') do
-  #   it('finds a contact based on their id number') do
-  #     test_contact = Contacts.new({:first_name => 'Joe', :last_name => 'Smith', :job => 'Plumber', :company => 'Smith & Sons'})
-  #     test_contact.save()
-  #     expect(Contacs.find(1))
+  describe('.find') do
+    it('finds a contact based on their id number') do
+      test_contact = Contacts.new({:first_name => 'Joe', :last_name => 'Smith', :job => 'Plumber', :company => 'Smith & Sons'})
+      test_contact.save()
+      expect(Contacts.find(1)).to(eq(test_contact))
+    end
+  end
 end
 
 describe(PhoneNumbers) do

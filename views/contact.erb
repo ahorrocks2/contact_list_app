@@ -1,0 +1,28 @@
+<h1><%= @contact.first_name() %> <%= @contact.last_name() %></h1>
+<h3><%= @contact.job() %></h3><br>
+<h3><%= @contact.company() %></h3><br>
+
+<% @contact.show_me_the_addresses().each() do |address| %>
+
+<li><%= address.one_line() %></li>
+
+<% end %>
+
+<form action="/new_address" method="post">
+  <label for="street_address">Street Address</label><br>
+  <input type="text" name="street_address" id="street_address">
+
+  <label for="city">City</label><br>
+  <input type="text" name="city" id="city">
+
+  <label for="state">State</label><br>
+  <input type="text" name="state" id="state">
+
+  <label for="zip">Zip</label><br>
+  <input type="text" name="zip" id="zip">
+
+  <label for="type">Type:</label><br>
+  <input type="text" name="type" id="type"><br>
+
+  <button type="submit">Add Address</button>
+</form>
